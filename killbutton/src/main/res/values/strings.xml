@@ -1,0 +1,5 @@
+<resources>
+    <!-- WIDGET -->
+    <string name="widget_red_button_name">Большая красная кнопка</string>
+    <string name="red_button_label">Kill them all</string>
+</resources>
