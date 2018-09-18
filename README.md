@@ -1,3 +1,3 @@
-# SmarthouseClient
+# Smarthouse client
 
 Android gradle modules example
