@@ -33,7 +33,7 @@ dependencies {
 
     implementation project(path: ':coremodule')
 
-    implementation 'androidx.appcompat:appcompat:1.0.0-rc02'
+    implementation "androidx.appcompat:appcompat:$androidx_appcompat_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"

@@ -1,7 +1,8 @@
 package mech.develop.smarthouse.smarthouseclient.presentation.presenters
 
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import mech.develop.smarthouse.smarthouseclient.domain.interactor.LightControlInteractor
 import mech.develop.smarthouse.smarthouseclient.domain.interactor.LightResetInteractor
 import mech.develop.smarthouse.smarthouseclient.presentation.activity.SmarthouseMainView
@@ -21,7 +22,7 @@ class SmarthousePresenter(private val lightControl: LightControlInteractor,
     }
 
     fun onStart() {
-        launch(UI) {
+        GlobalScope.launch(Dispatchers.Main) {
             viewRef.get()?.setBedroomCheckState(lightControl.getBedroomState())
             viewRef.get()?.setLibraryCheckState(lightControl.getLibraryLedState())
         }
@@ -37,12 +38,15 @@ class SmarthousePresenter(private val lightControl: LightControlInteractor,
 
     // led
     fun setBlueLedStripState(progress: Int) {
+        println(progress)
     }
 
     fun setGreenLedStripState(progress: Int) {
+        println(progress)
     }
 
     fun setRedLedStripState(progress: Int) {
+        println(progress)
     }
 
     // reset
@@ -52,7 +56,7 @@ class SmarthousePresenter(private val lightControl: LightControlInteractor,
 
     // ------------------------------ Inner methods -----------------------------------------------
     private fun reset() {
-        launch(UI) {
+        GlobalScope.launch(Dispatchers.Main) {
             lightReset.turnOffAllAwait()
 
             viewRef.get()?.setBedroomCheckState(lightControl.getBedroomState())

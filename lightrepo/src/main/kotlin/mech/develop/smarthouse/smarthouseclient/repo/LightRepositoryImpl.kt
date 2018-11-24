@@ -1,17 +1,18 @@
 package mech.develop.smarthouse.smarthouseclient.repo
 
-import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import mech.develop.smarthouse.smarthouseclient.network.SmarthouseRestApi
 
 class LightRepositoryImpl(private val api: SmarthouseRestApi) : LightRepository {
 
     override suspend fun getBedroomState(): Boolean =
-            async {
+            GlobalScope.async {
                 api.getBedroomLedState().execute().body() ?: false
             }.await()
 
     override suspend fun getLibraryLedState(): Boolean =
-            async {
+            GlobalScope.async {
                 api.getLibraryLedState().execute().body() ?: false
             }.await()
 

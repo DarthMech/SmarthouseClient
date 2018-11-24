@@ -1,6 +1,7 @@
 package mech.develop.smarthouse.smarthouseclient.domain.interactor
 
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import mech.develop.smarthouse.smarthouseclient.di.scope.ActivityScope
 import mech.develop.smarthouse.smarthouseclient.repo.LightRepository
 import javax.inject.Inject
@@ -13,13 +14,13 @@ class LightControlInteractor @Inject constructor(private val repo: LightReposito
     suspend fun getLibraryLedState(): Boolean = repo.getLibraryLedState()
 
     fun setBedroomLedState(state: Boolean) {
-        launch {
+        GlobalScope.launch {
             repo.setBedroomLedState(state)
         }
     }
 
     fun setLibraryLedState(state: Boolean) {
-        launch {
+        GlobalScope.launch {
             repo.setLibraryLedState(state)
         }
     }

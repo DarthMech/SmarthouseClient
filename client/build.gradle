@@ -3,15 +3,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
-kotlin {
-    experimental {
-        coroutines 'enable'
-    }
-}
-
 android {
     compileSdkVersion 28
-    buildToolsVersion '28.0.2'
 
     defaultConfig {
         applicationId "mech.develop.smarthouse.smarthouseclient"
