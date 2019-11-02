@@ -9,5 +9,11 @@ interface LightRepository {
 
     suspend fun setLibraryLedState(state: Boolean)
 
+    suspend fun setTapeLedState(state: Boolean)
+
+    suspend fun setBlueLedStripState(progress: Int)
+    suspend fun setGreenLedStripState(progress: Int)
+    suspend fun setRedLedStripState(progress: Int)
+
     suspend fun turnOffAll()
 }

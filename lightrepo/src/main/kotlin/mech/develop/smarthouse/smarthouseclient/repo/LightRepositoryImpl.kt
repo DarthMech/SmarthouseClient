@@ -24,6 +24,30 @@ class LightRepositoryImpl(private val api: SmarthouseRestApi) : LightRepository 
         api.setLibraryLedState(state).execute()
     }
 
+    override suspend fun setTapeLedState(state: Boolean) {
+        if (state) {
+            api.setRedLedStripState(255).execute()
+            api.setGreenLedStripState(255).execute()
+            api.setBlueLedStripState(255).execute()
+        } else {
+            api.setRedLedStripState(0).execute()
+            api.setGreenLedStripState(0).execute()
+            api.setBlueLedStripState(0).execute()
+        }
+    }
+
+    override suspend fun setBlueLedStripState(progress: Int) {
+        api.setBlueLedStripState(progress).execute()
+    }
+
+    override suspend fun setGreenLedStripState(progress: Int) {
+        api.setGreenLedStripState(progress).execute()
+    }
+
+    override suspend fun setRedLedStripState(progress: Int) {
+        api.setRedLedStripState(progress).execute()
+    }
+
     override suspend fun turnOffAll() {
         api.turnOffAll().execute()
     }

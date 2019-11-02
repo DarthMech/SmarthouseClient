@@ -30,21 +30,17 @@ interface SmarthouseRestApi {
     @POST("light/setLibraryLedState")
     fun setLibraryLedState(@Body state: Boolean): Call<Void>
 
-    // led strip
-    @GET("light/ledStripLight/green")
-    fun getGreenLedStripState(): Call<Int>
+    @Headers("Content-Type: application/json")
+    @POST("light/ledStripLight/red")
+    fun setRedLedStripState(@Body state: Int): Call<Void>
 
-//    @Headers("Content-Type: application/json")
-//    @POST("light/ledStripLight/red")
-//    fun setRedLedStripState(@Body state: Int): Single<Response<Void>>
-//
-//    @Headers("Content-Type: application/json")
-//    @POST("light/ledStripLight/green")
-//    fun setGreenLedStripState(@Body state: Int): Single<Response<Void>>
-//
-//    @Headers("Content-Type: application/json")
-//    @POST("light/ledStripLight/blue")
-//    fun setBlueLedStripState(@Body state: Int): Single<Response<Void>>
+    @Headers("Content-Type: application/json")
+    @POST("light/ledStripLight/green")
+    fun setGreenLedStripState(@Body state: Int): Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @POST("light/ledStripLight/blue")
+    fun setBlueLedStripState(@Body state: Int): Call<Void>
 
     // control
     @POST("light/turnOffAll")

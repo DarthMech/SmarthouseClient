@@ -36,17 +36,21 @@ class SmarthousePresenter(private val lightControl: LightControlInteractor,
         lightControl.setLibraryLedState(state)
     }
 
+    fun setTapeLedState(state: Boolean) {
+        lightControl.setTapeLedState(state)
+    }
+
     // led
     fun setBlueLedStripState(progress: Int) {
-        println(progress)
+        lightControl.setBlueLedStripState(progress)
     }
 
     fun setGreenLedStripState(progress: Int) {
-        println(progress)
+        lightControl.setGreenLedStripState(progress)
     }
 
     fun setRedLedStripState(progress: Int) {
-        println(progress)
+        lightControl.setRedLedStripState(progress)
     }
 
     // reset
@@ -61,6 +65,9 @@ class SmarthousePresenter(private val lightControl: LightControlInteractor,
 
             viewRef.get()?.setBedroomCheckState(lightControl.getBedroomState())
             viewRef.get()?.setLibraryCheckState(lightControl.getLibraryLedState())
+            viewRef.get()?.setTapeLedCheckState(false)
+
+            viewRef.get()?.clearControls()
         }
     }
 }

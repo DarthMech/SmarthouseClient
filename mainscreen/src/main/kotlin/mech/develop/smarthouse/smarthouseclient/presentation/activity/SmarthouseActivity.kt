@@ -67,16 +67,16 @@ class SmarthouseActivity : AppCompatActivity(), SmarthouseMainView {
         switch_library.isChecked = state
     }
 
+    override fun setTapeLedCheckState(state: Boolean) {
+        switch_tape_led.isChecked = state
+    }
+
     override fun clearControls() {
         switch_bedroom.isChecked = false
         switch_library.isChecked = false
+        switch_tape_led.isChecked = false
 
-        green_led_value_textView.text = "0"
-        green_led_value_seekBar.progress = 0
-        red_led_value_textView.text = "0"
-        red_led_value_seekBar.progress = 0
-        blue_led_value_textView.text = "0"
-        blue_led_value_seekBar.progress = 0
+        setLedProgress(0)
     }
 
     // --- Inner Methods ---
@@ -96,6 +96,11 @@ class SmarthouseActivity : AppCompatActivity(), SmarthouseMainView {
 
         switch_library.setOnCheckedChangeListener { _, state: Boolean ->
             presenter.setLibraryLedState(state)
+        }
+
+        switch_tape_led.setOnCheckedChangeListener { _, state: Boolean ->
+            presenter.setTapeLedState(state)
+            setLedProgress(if (state) 255 else 0)
         }
 
         kill_all_button.setOnClickListener {
@@ -136,7 +141,7 @@ class SmarthouseActivity : AppCompatActivity(), SmarthouseMainView {
 
         red_led_value_seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                blue_led_value_textView.text = progress.toString()
+                red_led_value_textView.text = progress.toString()
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -152,5 +157,14 @@ class SmarthouseActivity : AppCompatActivity(), SmarthouseMainView {
 
     private fun navigateToAboutScreen() {
         router.openAboutScreen(this)
+    }
+
+    private fun setLedProgress(progress: Int) {
+        green_led_value_textView.text = "$progress"
+        green_led_value_seekBar.progress = progress
+        red_led_value_textView.text = "$progress"
+        red_led_value_seekBar.progress = progress
+        blue_led_value_textView.text = "$progress"
+        blue_led_value_seekBar.progress = progress
     }
 }
