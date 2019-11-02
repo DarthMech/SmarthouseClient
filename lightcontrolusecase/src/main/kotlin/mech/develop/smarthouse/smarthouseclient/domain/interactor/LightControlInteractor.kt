@@ -26,25 +26,25 @@ class LightControlInteractor @Inject constructor(private val repo: LightReposito
     }
 
     fun setTapeLedState(state: Boolean) {
-        launch {
+        GlobalScope.launch {
             repo.setTapeLedState(state)
         }
     }
 
     fun setBlueLedStripState(progress: Int) {
-        launch {
+        GlobalScope.launch {
             repo.setBlueLedStripState(progress)
         }
     }
 
     fun setGreenLedStripState(progress: Int) {
-        launch {
+        GlobalScope.launch {
             repo.setGreenLedStripState(progress)
         }
     }
 
     fun setRedLedStripState(progress: Int) {
-        launch {
+        GlobalScope.launch {
             repo.setRedLedStripState(progress)
         }
     }
