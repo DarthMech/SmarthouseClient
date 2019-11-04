@@ -4,12 +4,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion ext.android_sdk_version = 29
 
     defaultConfig {
         applicationId "mech.develop.smarthouse.smarthouseclient"
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdkVersion project.min_android_sdk_version
+        targetSdkVersion project.android_sdk_version
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
