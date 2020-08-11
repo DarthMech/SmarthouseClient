@@ -1,0 +1,76 @@
+sonarqube {
+    properties {
+        // Root project information
+        property "sonar.gitlab.query_max_retry", "100"
+        property "sonar.gitlab.query_wait", "10000"
+
+        property "sonar.projectName", "Smarthouse Android"
+        property "sonar.projectKey", "smarthouse-android"
+
+        property "sonar.verbose", "false"
+        property "sonar.host.url", sonarUrl
+
+        // Some properties that will be inherited by the modules
+        property "sonar.language", " "
+        property "sonar.sourceEncoding", "UTF-8"
+
+//        property "sonar.sources", "./src/main/kotlin"
+//        property "sonar.tests", "./src/test/kotlin"
+
+//        property "sonar.java.binaries", "./build/intermediates/javac/debug/classes,./build/tmp/kotlin-classes/debug"
+//        property "sonar.java.test.binaries", "./build/tmp/kotlin-classes/debugUnitTest"
+
+        // client
+//        property "client.sonar.projectName", "Smarthouse Android client"
+//        property "client.sonar.projectKey", "smarthouse-android_client"
+
+        // network
+//        property "network.sonar.projectName", "Smarthouse Android network"
+//        property "network.sonar.projectKey", "smarthouse-android_network"
+
+        // killbutton
+//        property "killbutton.sonar.projectName", "Smarthouse Android killbutton"
+//        property "killbutton.sonar.projectKey", "smarthouse-android_killbutton"
+
+    }
+}
+
+subprojects {
+    sonarqube {
+        properties {
+            property "sonar.sources", "./src/main/kotlin"
+//            property "sonar.tests", "./src/test/kotlin"
+
+            property "sonar.java.binaries", "./build/intermediates/javac/debug/classes,./build/tmp/kotlin-classes/debug"
+//            property "sonar.java.test.binaries", "./build/tmp/kotlin-classes/debugUnitTest"
+        }
+    }
+}
+
+project(":client") {
+    sonarqube {
+        properties {
+            property "sonar.sources", "./src/main/kotlin"
+//            property "sonar.tests", "./src/test/kotlin"
+
+            property "sonar.java.binaries", "./build/intermediates/javac/debug/classes,./build/tmp/kotlin-classes/debug"
+//            property "sonar.java.test.binaries", "./build/tmp/kotlin-classes/debugUnitTest"
+        }
+    }
+}
+
+project(":network") {
+    sonarqube {
+        properties {
+            skipProject = true
+        }
+    }
+}
+
+project(":lightrepo") {
+    sonarqube {
+        properties {
+            skipProject = true
+        }
+    }
+}
