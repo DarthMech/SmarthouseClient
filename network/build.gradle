@@ -1,32 +1,3 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-
-android {
-    compileSdkVersion ext.android_sdk_version = 29
-
-    defaultConfig {
-        minSdkVersion project.min_android_sdk_version
-        targetSdkVersion project.android_sdk_version
-        versionCode 1
-        versionName "1.0"
-    }
-
-    sourceSets {
-        main.java.srcDirs = ['src/main/kotlin']
-        test.java.srcDirs = ['src/test/kotlin']
-        androidTest.java.srcDirs = ['src/androidTest/kotlin']
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-}
-
 dependencies {
     implementation project(path: ':coremodule')
 
@@ -37,4 +8,7 @@ dependencies {
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-scalars:2.1.0"
+
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
 }

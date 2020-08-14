@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mech.develop.smarthouse.smarthouseclient.presentation.activity.SmarthouseActivity">
+    tools:context="mech.develop.smarthouse.smarthouseclient.coremodule.aboutscreen.presentation.activity.SmarthouseActivity">
 
     <Switch
         android:id="@+id/switch_bedroom"

@@ -1,12 +1,28 @@
 package mech.develop.smarthouse.smarthouseclient
 
 import android.app.Application
-import mech.develop.smarthouse.smarthouseclient.di.*
+import mech.develop.smarthouse.smarthouseclient.aboutscreen.di.AboutScreenRouterComponent
+import mech.develop.smarthouse.smarthouseclient.aboutscreen.di.AboutScreenRouterModule
+import mech.develop.smarthouse.smarthouseclient.aboutscreen.di.DaggerAboutScreenRouterComponent
+import mech.develop.smarthouse.smarthouseclient.coremodule.aboutscreen.di.*
+import mech.develop.smarthouse.smarthouseclient.coremodule.SmarthouseApp
+import mech.develop.smarthouse.smarthouseclient.coremodule.di.ApplicationProvider
+import mech.develop.smarthouse.smarthouseclient.coremodule.di.RepoProvider
+import mech.develop.smarthouse.smarthouseclient.coremodule.di.RoutingProvider
+import mech.develop.smarthouse.smarthouseclient.killbutton.SmarthouseWidgetApp
+import mech.develop.smarthouse.smarthouseclient.killbutton.di.DaggerRedButtonComponent
+import mech.develop.smarthouse.smarthouseclient.killbutton.di.RedButtonComponent
+import mech.develop.smarthouse.smarthouseclient.killbutton.di.RedButtonWidgetModule
+import mech.develop.smarthouse.smarthouseclient.lightrepo.di.DaggerLightRepositoryComponent
+import mech.develop.smarthouse.smarthouseclient.lightrepo.di.LightRepositoryComponent
+import mech.develop.smarthouse.smarthouseclient.lightrepo.di.LightRepositoryModule
 import mech.develop.smarthouse.smarthouseclient.network.di.DaggerNetworkComponent
 import mech.develop.smarthouse.smarthouseclient.network.di.NetworkComponent
 import mech.develop.smarthouse.smarthouseclient.network.di.NetworkModule
 
-class SmarthouseApplication : Application(), SmarthouseApp, SmarthouseWidgetApp {
+class SmarthouseApplication : Application(),
+                              SmarthouseApp,
+                              SmarthouseWidgetApp {
 
     private val component: AppComponent by lazy {
         DaggerAppComponent

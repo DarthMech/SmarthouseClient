@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="mech.develop.smarthouse.smarthouseclient">
+    package="mech.develop.smarthouse.smarthouseclient.aboutscreen">
 
     <application>
         <activity android:name=".presentation.AboutActivity"/>

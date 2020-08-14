@@ -5,12 +5,20 @@ buildscript {
     ext.coroutines_version = '1.1.0'
 
     ext.dagger_version = '2.11'
-    ext.retrofit_version = '2.4.0'
+    ext.retrofit_version = '2.9.0'
 
-    ext.androidx_appcompat_version = '1.1.0'
+    ext.androidx_appcompat_version = '1.2.0'
 
     ext.sonarqube_scanner_version = '3.0'
-    ext.agp_version = '4.0.0'
+    ext.agp_version = '4.0.1'
+
+    ext.okhttp_version = '4.8.1'
+
+    // test
+    ext.junit_version = "5.6.2"
+    ext.mockito_kotlin_version = "2.2.0"
+    ext.androidx_test = "1.1.0"
+    ext.espresso_version = "3.2.0"
 
     ext.android_sdk_version = 29
     ext.min_android_sdk_version = 21
@@ -25,7 +33,6 @@ buildscript {
         classpath "com.android.tools.build:gradle:$agp_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:$sonarqube_scanner_version"
-
     }
 }
 
@@ -36,6 +43,60 @@ allprojects {
     repositories {
         google()
         jcenter()
+    }
+}
+
+subprojects {
+    if (project.name == "client") {
+        apply plugin: 'com.android.application'
+    } else {
+        apply plugin: 'com.android.library'
+    }
+
+    apply plugin: 'kotlin-android'
+    apply plugin: 'kotlin-kapt'
+
+    android {
+        flavorDimensions "default"
+
+        compileSdkVersion project.android_sdk_version
+
+        defaultConfig {
+            minSdkVersion project.min_android_sdk_version
+            targetSdkVersion project.android_sdk_version
+            versionCode 1
+            versionName "1.0"
+        }
+
+        sourceSets {
+            main.java.srcDirs = ['src/main/kotlin']
+            test.java.srcDirs = ['src/test/kotlin']
+            androidTest.java.srcDirs = ['src/androidTest/kotlin']
+        }
+
+        buildTypes {
+
+            debug {
+            }
+
+            release {
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            }
+
+        }
+
+        productFlavors {
+            uitest {
+                buildConfigField("String", "API_URL", "\"http:/127.0.0.1:8080\"")
+            }
+
+            prod {
+                buildConfigField("String", "API_URL", "\"https://prod_url:1111\"")
+            }
+
+        }
     }
 }
 

@@ -1,31 +1,18 @@
-apply plugin: 'com.android.application'
-
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion ext.android_sdk_version = 29
 
     defaultConfig {
-        applicationId "mech.develop.smarthouse.smarthouseclient"
-        minSdkVersion project.min_android_sdk_version
-        targetSdkVersion project.android_sdk_version
-        versionCode 1
-        versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    sourceSets {
-        main.java.srcDirs = ['src/main/kotlin']
-        test.java.srcDirs = ['src/test/kotlin']
-        androidTest.java.srcDirs = ['src/androidTest/kotlin']
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
@@ -42,10 +29,37 @@ dependencies {
     implementation project(path: ':mainscreen')
     implementation project(path: ':aboutscreen')
 
+    implementation "androidx.appcompat:appcompat:$androidx_appcompat_version"
+
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     implementation "com.google.dagger:dagger:$dagger_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //OkHttp3
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+
+    // mock api
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$okhttp_version"
+
+    // Core library
+    androidTestImplementation "androidx.test:core:$androidx_test"
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation "androidx.test:runner:$androidx_test"
+    androidTestImplementation "androidx.test:rules:$androidx_test"
+
+    // Assertions
+    androidTestImplementation "androidx.test.ext:junit:1.1.1"
+    androidTestImplementation "androidx.test.ext:truth:$androidx_test"
+    androidTestImplementation "com.google.truth:truth:0.42"
+
+    // Espresso dependencies
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+
+    //
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+
 }
 
 repositories {

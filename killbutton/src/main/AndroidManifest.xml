@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="mech.develop.smarthouse.smarthouseclient">
+    package="mech.develop.smarthouse.smarthouseclient.killbutton">
 
     <application>
         <receiver
-            android:name="mech.develop.smarthouse.smarthouseclient.presentation.widget.view.RedButtonWidget"
+            android:name=".widget.view.RedButtonWidget"
             android:icon="@android:drawable/star_big_on"
             android:label="@string/widget_red_button_name">
             <intent-filter>
